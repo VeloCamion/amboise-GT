@@ -22,8 +22,8 @@ var style_PointsnoirsCCVA_1 = function(feature, resolution){
         offsetX = 8
         offsetY = 3
         var feature = clusteredFeatures[0];
-        if (feature.get("\"name\" AND \"desc\"") !== null) {
-            labelText = String(feature.get("\"name\" AND \"desc\""));
+        if (feature.get("name") !== null) {
+            labelText = String(feature.get("name"));
         }
         key = value + "_" + labelText
     } else {
