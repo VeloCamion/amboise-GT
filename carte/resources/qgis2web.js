@@ -9,7 +9,7 @@ var map = new ol.Map({
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([104331.580123, 6004792.247913, 113837.139105, 6010843.972359], map.getSize());
+map.getView().fit([106986.612752, 6011762.168905, 107595.571581, 6012250.256290], map.getSize());
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -842,7 +842,7 @@ document.getElementsByClassName('gcd-gl-btn')[0].className += ' fa fa-search';
 //layer search
 
 var searchLayer = new SearchLayer({
-    layer: lyr_pointsnoirs_1,
+    layer: lyr_PointsnoirsCCVA_1,
     colName: 'name',
     zoom: 10,
     collapsed: true,
@@ -857,6 +857,23 @@ document.getElementsByClassName('search-layer-input-search')[0].placeholder = 'S
 
 
 //layerswitcher
+
+var layerSwitcher = new ol.control.LayerSwitcher({
+    activationMode: 'click',
+	startActive: true,
+	tipLabel: "Layers",
+    target: 'top-right-container',
+	collapseLabel: '»',
+	collapseTipLabel: 'Close'
+    });
+map.addControl(layerSwitcher);
+if (hasTouchScreen || isSmallScreen) {
+	document.addEventListener('DOMContentLoaded', function() {
+		setTimeout(function() {
+			layerSwitcher.hidePanel();
+		}, 500);
+	});	
+}
 
 
 
