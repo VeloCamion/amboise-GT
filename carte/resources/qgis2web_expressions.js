@@ -763,3 +763,69 @@ function fnc__specialcol_(values, context) {
 function fnc_project_color(values, context) {
     return false;
 };
+
+
+
+function exp_Divers_1rule0_eval_expression(context) {
+    // type = 'Divers'
+
+    var feature = context.feature;
+    
+    if (feature.properties) {
+        return (feature.get('type')  == 'Divers');
+    } else {
+        return (feature.get('type')  == 'Divers');
+    }
+}
+
+
+function exp_Nonrglementaire_2rule0_eval_expression(context) {
+    // type = 'Non réglementaire'
+
+    var feature = context.feature;
+    
+    if (feature.properties) {
+        return (feature.get('type')  == 'Non réglementaire');
+    } else {
+        return (feature.get('type')  == 'Non réglementaire');
+    }
+}
+
+
+function exp_Amliorations_3rule0_eval_expression(context) {
+    // type = 'Améliorations'
+
+    var feature = context.feature;
+    
+    if (feature.properties) {
+        return (feature.get('type')  == 'Améliorations');
+    } else {
+        return (feature.get('type')  == 'Améliorations');
+    }
+}
+
+
+function exp_Discontinuitcyclable_4rule0_eval_expression(context) {
+    // type = 'Discontinuité cyclable'
+
+    var feature = context.feature;
+    
+    if (feature.properties) {
+        return (feature.get('type')  == 'Discontinuité cyclable');
+    } else {
+        return (feature.get('type')  == 'Discontinuité cyclable');
+    }
+}
+
+
+function exp_Dangers_5rule0_eval_expression(context) {
+    // type IS 'Danger'
+
+    var feature = context.feature;
+    
+    if (feature.properties) {
+        return (feature.get('type')  === 'Danger');
+    } else {
+        return (feature.get('type')  === 'Danger');
+    }
+}

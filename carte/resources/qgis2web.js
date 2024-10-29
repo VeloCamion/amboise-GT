@@ -9,7 +9,7 @@ var map = new ol.Map({
 });
 
 //initial view - epsg:3857 coordinates if not "Match project CRS"
-map.getView().fit([106660.588464, 6004398.564929, 116105.507311, 6011967.194805], map.getSize());
+map.getView().fit([103730.391626, 6004975.649328, 113939.544268, 6013157.762958], map.getSize());
 
 ////small screen definition
     var hasTouchScreen = map.getViewport().classList.contains('ol-touch');
@@ -174,7 +174,7 @@ function onPointerMove(evt) {
     var currentLayer;
     var currentFeatureKeys;
     var clusteredFeatures;
-    var clusterLenght;
+    var clusterLength;
     var popupText = '<ul>';
     map.forEachFeatureAtPixel(pixel, function(feature, layer) {
         if (layer && feature instanceof ol.Feature && (layer.get("interactive") || layer.get("interactive") == undefined)) {
@@ -188,7 +188,7 @@ function onPointerMove(evt) {
             currentLayer = layer;
             clusteredFeatures = feature.get("features");
             if (clusteredFeatures) {
-				clusterLenght = clusteredFeatures.length;
+				clusterLength = clusteredFeatures.length;
 			}
             var clusterFeature;
             if (typeof clusteredFeatures !== "undefined") {
@@ -239,7 +239,7 @@ function onPointerMove(evt) {
 					if (typeof clusteredFeatures == "undefined") {
 						radius = featureStyle.getImage().getRadius();
 					} else {
-						radius = parseFloat(featureStyle.split('radius')[1].split(' ')[1]) + clusterLenght;
+						radius = parseFloat(featureStyle.split('radius')[1].split(' ')[1]) + clusterLength;
 					}
 
                     highlightStyle = new ol.style.Style({
@@ -528,7 +528,7 @@ var measureControl = (function (Control) {
     typeSelect.id = "type";
 
     var measurementOption = [
-        { value: "LineString", description: "Lenght" },
+        { value: "LineString", description: "Length" },
         { value: "Polygon", description: "Area" }
         ];
     measurementOption.forEach(function (option) {
@@ -841,17 +841,6 @@ document.getElementsByClassName('gcd-gl-btn')[0].className += ' fa fa-search';
 
 //layer search
 
-var searchLayer = new SearchLayer({
-    layer: lyr_PointsnoirsCCVA_1,
-    colName: 'name',
-    zoom: 10,
-    collapsed: true,
-    map: map
-});
-map.addControl(searchLayer);
-document.getElementsByClassName('search-layer')[0].getElementsByTagName('button')[0].className += ' fa fa-binoculars';
-document.getElementsByClassName('search-layer-input-search')[0].placeholder = 'Search feature ...';
-    
 
 //scalebar
 
@@ -898,18 +887,20 @@ bottomAttribution.element.appendChild(attributionList);
 
 
 // Disable "popup on hover" or "highlight on hover" if ol-control mouseover
+var preDoHover = doHover;
+var preDoHighlight = doHighlight;
+var isPopupAllActive = false;
 document.addEventListener('DOMContentLoaded', function() {
-    var preDoHover = doHover;
-	var preDoHighlight = doHighlight;
 	if (doHover || doHighlight) {
 		var controlElements = document.getElementsByClassName('ol-control');
 		for (var i = 0; i < controlElements.length; i++) {
-			controlElements[i].addEventListener('mouseover', function() {
-				if (doHover) { doHover = false; }
-				if (doHighlight) { doHighlight = false; }
+			controlElements[i].addEventListener('mouseover', function() { 
+				doHover = false;
+				doHighlight = false;
 			});
 			controlElements[i].addEventListener('mouseout', function() {
 				doHover = preDoHover;
+				if (isPopupAllActive) { return }
 				doHighlight = preDoHighlight;
 			});
 		}
