@@ -36,10 +36,13 @@ var features_presqueaccidents_2 = format_presqueaccidents_2.readFeatures(json_pr
 var jsonSource_presqueaccidents_2 = new ol.source.Vector({
     attributions: ' ',
 });
-jsonSource_presqueaccidents_2.addFeatures(features_presqueaccidents_2);
+jsonSource_presqueaccidents_2.addFeatures(features_presqueaccidents_2);cluster_presqueaccidents_2 = new ol.source.Cluster({
+  distance: 10,
+  source: jsonSource_presqueaccidents_2
+});
 var lyr_presqueaccidents_2 = new ol.layer.Vector({
                 declutter: false,
-                source:jsonSource_presqueaccidents_2, 
+                source:cluster_presqueaccidents_2, 
                 style: style_presqueaccidents_2,
                 popuplayertitle: "(presque)accidents",
                 interactive: true,
@@ -53,7 +56,7 @@ lyr_presqueaccidents_2.set('fieldAliases', {'fid': 'fid', 'name': 'name', 'date'
 lyr_PointsnoirsCCVA_1.set('fieldImages', {'fid': 'TextEdit', 'name': 'TextEdit', 'desc': 'TextEdit', 'type': 'TextEdit', 'status': 'ValueMap', 'ouvert': 'DateTime', });
 lyr_presqueaccidents_2.set('fieldImages', {'fid': 'TextEdit', 'name': 'TextEdit', 'date': 'DateTime', 'desc': 'TextEdit', });
 lyr_PointsnoirsCCVA_1.set('fieldLabels', {'fid': 'hidden field', 'name': 'inline label - always visible', 'desc': 'inline label - always visible', 'type': 'inline label - always visible', 'status': 'inline label - always visible', 'ouvert': 'inline label - always visible', });
-lyr_presqueaccidents_2.set('fieldLabels', {'fid': 'no label', 'name': 'no label', 'date': 'no label', 'desc': 'no label', });
+lyr_presqueaccidents_2.set('fieldLabels', {'fid': 'no label', 'name': 'inline label - always visible', 'date': 'inline label - always visible', 'desc': 'inline label - always visible', });
 lyr_presqueaccidents_2.on('precompose', function(evt) {
     evt.context.globalCompositeOperation = 'normal';
 });
